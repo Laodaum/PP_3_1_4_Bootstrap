@@ -163,9 +163,11 @@
                                                         </br>
                                                         <div class="form-group">
                                                             <label class="d-flex justify-content-center" for="roleE" style="font-weight: bold">Role</label>
-                                                            <select multiple="multiple" name="roleSelectedID" th:name="roleSelectedID" class="form-control" id="roleE" style="height: 60px;">
-                                                                <option id="selectRoleUserE" th:value="user">user</option>
-                                                                <option id="selectRoleAdminE" th:value="admin">admin</option>
+                                                            <select multiple="multiple" th:name="roleSelectedID" class="form-control" id="roleE" style="height: 60px;" required>
+                                                                <option th:each="role:${allRoles}"
+                                                                        th:value="${role.getId()}"
+                                                                        th:text="${role}">
+                                                                </option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -219,8 +221,7 @@
                                                         </br>
                                                         <div class="form-group">
                                                             <label class="d-flex justify-content-center" for="roleD" style="font-weight: bold">Role</label>
-                                                            <select multiple class="form-control" id="roleD" disabled="disabled" style="height: 60px; color: #636E7A; background-color: #E9ECEF">
-                                                                <select multiple="multiple" name="roleSelectedID" th:name="roleSelectedID" class="form-control" id="roleE" style="height: 60px;">
+                                                                <select multiple="multiple" name="roleSelectedID" th:name="roleSelectedID" class="form-control" id="roleD" style="height: 60px;">
                                                                     <option id="selectRoleUserD" th:value="user">user</option>
                                                                     <option id="selectRoleAdminD" th:value="admin">admin</option>
                                                             </select>
@@ -279,7 +280,7 @@
                                     <div class="form-group">
                                         <label class="d-flex justify-content-center" for="roleN" style="font-weight: bold">Role</label>
                                         <select multiple="multiple" th:name="roles" class="form-control" id="roleN" style="height: 60px;" required>
-                                            <option th:each="role:${modelRole}"
+                                            <option th:each="role:${allRoles}"
                                                     th:value="${role.getId()}"
                                                     th:text="${role}">
                                             </option>
@@ -364,14 +365,14 @@
         $('#emailD').val($btn.attr('data-email'));
         var roles = $btn.attr('data-roles');
         if (roles.includes("user")) {
-            $('#selectedRoleUserD').attr('selected', "selected")
+            $('#selectRoleUserD').attr('selected', "selected")
         } else {
-            $('#selectedRoleUserD').attr('selected', false)
+            $('#selectRoleUserD').attr('selected', false)
         }
         if (roles.includes("admin")) {
-            $('#selectedRoleAdminD').attr('selected', "selected");
+            $('#selectRoleAdminD').attr('selected', "selected");
         } else {
-            $('#selectedRoleAdminD').attr('selected', false)
+            $('#selectRoleAdminD').attr('selected', false)
         }
     });
 </script>
